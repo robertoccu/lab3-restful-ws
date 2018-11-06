@@ -50,10 +50,13 @@ public class AddressBookServiceTest {
 		assertEquals(0, response.readEntity(AddressBook.class).getPersonList()
 				.size());
 
-		//////////////////////////////////////////////////////////////////////
-		// Verify that GET /contacts is well implemented by the service, i.e
-		// complete the test to ensure that it is safe and idempotent
-		//////////////////////////////////////////////////////////////////////
+		// Test that GET /contacts is safe
+		assertEquals(ab.getPersonList().size(), 0);
+
+		// Test that GET /contacts is idempotent
+		response = client.target("http://localhost:8282/contacts")
+				.request().get();
+		assertEquals(200, response.getStatus());
 	}
 
 	@Test
@@ -91,10 +94,9 @@ public class AddressBookServiceTest {
 		assertEquals(1, juanUpdated.getId());
 		assertEquals(juanURI, juanUpdated.getHref());
 
-		//////////////////////////////////////////////////////////////////////
-		// Verify that POST /contacts is well implemented by the service, i.e
-		// complete the test to ensure that it is not safe and not idempotent
-		//////////////////////////////////////////////////////////////////////	
+		// Test that POST /contacts is not safe
+
+		// Test that POST /contacts is not not idempotent
 				
 	}
 
@@ -231,10 +233,10 @@ public class AddressBookServiceTest {
 				.put(Entity.entity(maria, MediaType.APPLICATION_JSON));
 		assertEquals(400, response.getStatus());
 
-		//////////////////////////////////////////////////////////////////////
-		// Verify that PUT /contacts/person/2 is well implemented by the service, i.e
-		// complete the test to ensure that it is idempotent but not safe
-		//////////////////////////////////////////////////////////////////////	
+		// Test that PUT /contacts/person/2 is not safe
+		
+
+		// Test that PUT /contacts/person/2 is idempotent
 	
 	}
 
@@ -264,10 +266,14 @@ public class AddressBookServiceTest {
 				.request().delete();
 		assertEquals(404, response.getStatus());
 
-		//////////////////////////////////////////////////////////////////////
-		// Verify that DELETE /contacts/person/2 is well implemented by the service, i.e
-		// complete the test to ensure that it is idempotent but not safe
-		//////////////////////////////////////////////////////////////////////	
+		// Test that DELETE /contacts/person/2 is not safe
+		assertEquals(false, ab.getPersonList().contains(juan));
+
+		// Test that DELETE /contacts/person/2 is idempotent
+		response = client
+				.target("http://localhost:8282/contacts/person/2").request()
+				.delete();
+		assertEquals(404, response.getStatus()); // Returns 404 because nothing is deteled this time.
 
 	}
 
