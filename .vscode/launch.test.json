@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "lab3-restful-ws",
+                "projectName": "lab3-restful-ws",
+                "workingDirectory": "c:\\Users\\ccucr\\OneDrive - unizar.es\\Universidad\\4_Cuarto\\Primer_Cuatrimestre\\Ingenieria_Web\\Practicas\\lab3-restful-ws",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "lab3-restful-ws",
+                "projectName": "lab3-restful-ws",
+                "workingDirectory": "c:\\Users\\ccucr\\OneDrive - unizar.es\\Universidad\\4_Cuarto\\Primer_Cuatrimestre\\Ingenieria_Web\\Practicas\\lab3-restful-ws",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
